@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Heart, Star, Gift, Sparkles, ArrowRight, Mail, Cake, PartyPopper } from 'lucide-react'
+import Image from 'next/image'
 
 interface Question {
   id: number
@@ -283,9 +284,11 @@ export default function BirthdayWebsite() {
               className="relative mx-auto max-w-sm md:max-w-none"
             >
               <div className="bg-white p-3 sm:p-4 rounded-lg shadow-2xl transform hover:rotate-0 transition-transform duration-300">
-                <img 
+                <Image 
                   src="/images/foto1.png" 
                   alt="Foto Spesial 1" 
+                  width={400}
+                  height={320}
                   className="w-full h-60 sm:h-80 object-cover rounded-lg"
                 />
               </div>
@@ -302,9 +305,11 @@ export default function BirthdayWebsite() {
               className="relative mx-auto max-w-sm md:max-w-none"
             >
               <div className="bg-white p-3 sm:p-4 rounded-lg shadow-2xl transform hover:rotate-0 transition-transform duration-300">
-                <img 
+                <Image 
                   src="/images/foto2.png" 
                   alt="Foto Spesial 2" 
+                  width={400}
+                  height={320}
                   className="w-full h-60 sm:h-80 object-cover rounded-lg"
                 />
               </div>
@@ -379,8 +384,8 @@ export default function BirthdayWebsite() {
                   
                   <p className="pl-4 border-l-4 border-purple-300 bg-purple-50/50 p-3 rounded-r-lg italic">
                     Always take care, stay safe, stay happy, stay healthy, happy birthday. Again, 
-                    enjoy your day, birthday person. And don't be surprised if more people start 
-                    falling for that charm of yours... one look at those eyes, and it's kind of inevitable.
+                    enjoy your day, birthday person. And don&apos;t be surprised if more people start 
+                    falling for that charm of yours... one look at those eyes, and it&apos;s kind of inevitable.
                   </p>
                 </div>
                 
@@ -463,9 +468,11 @@ export default function BirthdayWebsite() {
                 className="mb-4 sm:mb-6"
               >
                 <div className="bg-white p-3 sm:p-4 rounded-xl shadow-lg mx-auto max-w-xs sm:max-w-sm">
-                  <img 
+                  <Image 
                     src={questions[currentQuestion].image}
                     alt={`Foto untuk pertanyaan ${currentQuestion + 1}`}
+                    width={300}
+                    height={200}
                     className="w-full h-40 sm:h-48 object-cover rounded-lg"
                   />
                 </div>
