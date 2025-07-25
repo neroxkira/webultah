@@ -58,12 +58,35 @@ export default function BirthdayWebsite() {
   const [isNoButtonMoving, setIsNoButtonMoving] = useState(false)
   const [noClickCount, setNoClickCount] = useState(0)
   const [showQuiz, setShowQuiz] = useState(false)
+  const [audioLoaded, setAudioLoaded] = useState(false)
 
   useEffect(() => {
     setIsClient(true)
+    
+    // Load and play background music
+    const audio = new Audio('/images/birthday.mp3')
+    audio.loop = true
+    audio.volume = 0.3 
+    audio.currentTime = 138
+    const playAudio = () => {
+      if (!audioLoaded) {
+        audio.play().then(() => {
+          setAudioLoaded(true)
+          console.log('Background music started from 2:18')
+        }).catch((error) => {
+          console.log('Audio autoplay prevented:', error)
+        })
+      }
+    }
+    document.addEventListener('click', playAudio, { once: true })
+    document.addEventListener('touchstart', playAudio, { once: true })
+    
+    return () => {
+      document.removeEventListener('click', playAudio)
+      document.removeEventListener('touchstart', playAudio)
+      audio.pause()
+    }
   }, [])
-
-  // Don't render anything until we're on the client
   if (!isClient) {
     return null
   }
@@ -71,9 +94,6 @@ export default function BirthdayWebsite() {
   const handleAnswerSelect = (answer: boolean) => {
     // Kalau pertanyaan terakhir dan jawab "No", tombol No kabur
     if (questions[currentQuestion].isLastQuestion && !answer) {
-      console.log("Tombol NO diklik di pertanyaan terakhir!") // Debug
-      
-      // Increment click count untuk posisi yang berbeda setiap kali
       const newClickCount = noClickCount + 1
       setNoClickCount(newClickCount)
       setIsNoButtonMoving(true)
